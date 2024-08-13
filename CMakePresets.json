@@ -1,0 +1,27 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "mingw-dbg",
+            "description": "Configuración por defecto (Utiliza GCC)",
+            "hidden": false,
+            "generator": "MSYS Makefiles",
+            "binaryDir": "${workspaceFolder}/build",
+            "architecture": "x64",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "vs-dbg",
+            "description": "Crea un proyecto de Visual Studio 17 2022 (Utiliza MSVC)",
+            "hidden": false,
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${workspaceFolder}/build",
+            "architecture": "x64",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ]
+}
