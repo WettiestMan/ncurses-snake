@@ -3,24 +3,48 @@
     "configurePresets": [
         {
             "name": "mingw-dbg",
-            "description": "Configuración por defecto (Utiliza GCC)",
+            "description": "Genera makefiles para MSYS (Utiliza GCC, debug)",
             "hidden": false,
             "generator": "MSYS Makefiles",
-            "binaryDir": "${workspaceFolder}/build",
-            "architecture": "x64",
+            "binaryDir": "${workspaceFolder}/build_db",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
             }
         },
         {
             "name": "vs-dbg",
-            "description": "Crea un proyecto de Visual Studio 17 2022 (Utiliza MSVC)",
+            "description": "Crea un proyecto de Visual Studio 17 2022 (Utiliza MSVC, debug)",
+            "hidden": false,
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${workspaceFolder}/build_db",
+            "architecture": "x64",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        },
+        {
+            "name": "mingw-rel",
+            "description": "Genera makefiles para MSYS (Utiliza GCC, release)",
+            "hidden": false,
+            "generator": "MSYS Makefiles",
+            "binaryDir": "${workspaceFolder}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        },
+        {
+            "name": "vs-rel",
+            "description": "Crea un proyecto de Visual Studio 17 2022 (Utiliza MSVC, release)",
             "hidden": false,
             "generator": "Visual Studio 17 2022",
             "binaryDir": "${workspaceFolder}/build",
             "architecture": "x64",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
             }
         }
     ]
