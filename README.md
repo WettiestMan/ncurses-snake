@@ -4,7 +4,7 @@
 
 This a simple snake game made for the terminal using the ncurses library.  
 
-This project takes heavy inspiration from this other [](https://github.com/Shellyda/snake-game-bootloader-project.git).
+This project takes heavy inspiration from this other [(This one)](https://github.com/Shellyda/snake-game-bootloader-project.git).
 You could consider this as a rewrite of that repo: the idea and the L&F is the same, but the code was rewritten from scratch
 (quite ironic, considering the other project is done in ASM and made to run on technically any IBM PC compatible without an OS).  
 
