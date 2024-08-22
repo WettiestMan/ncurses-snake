@@ -1,5 +1,5 @@
-#ifndef GUTILS_HPP_TTT
-#define GUTILS_HPP_TTT
+#ifndef GUTILS_HPP_NSNK
+#define GUTILS_HPP_NSNK
 
 #include <cstdint>
 #include <utility>

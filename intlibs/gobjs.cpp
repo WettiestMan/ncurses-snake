@@ -1,6 +1,5 @@
 #include "gobjs.hpp"
 #include "gutils.hpp"
-#include <tuple>
 
 namespace assets{
     food::food() noexcept : x(utils::generate_random_x())
@@ -29,5 +28,10 @@ namespace assets{
         this->x = f.x;
         this->y = f.y;
         return *this;
+    }
+
+    bool food::operator==(const food& f) const noexcept
+    {
+        return (this->x == f.x) && (this->y == f.y);
     }
 }
