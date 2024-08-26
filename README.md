@@ -40,7 +40,7 @@ ncurses installed for your compiler.
 
 Use the arrow keys or WASD to move the snake.
 
-Press Ctrl+C if you are done and want to leave.
+Press Ctrl+C if you are done and want to leave (BUGGY FOR THE MOMENT).
 
 ---
 
