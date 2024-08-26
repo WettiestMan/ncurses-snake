@@ -125,19 +125,19 @@ int main(int argc, char** argv){
     wrefresh(gamefield);
 
     while(gbvars.keep_running){
-        //mvwaddnwstr(stdscr, 0, 0, gbvars.points_tmpl, gbconst::points_len);
         flowctrl::reset_game(gamefield, gbvars, player);
         flowctrl::generate_first_food(gamefield, gbvars);
         refresh();
 
         while(!gbvars.game_over){
-            std::this_thread::sleep_for(16ms);
+            std::this_thread::sleep_for(56ms);
             hdl::handle_gamefield_keyboard(gamefield, gbvars, player);
             flowctrl::update_snake_head(gamefield, gbvars, player);
-            //flowctrl::update_snake_tail(gamefield, gbvars, player); going to be called by check_snake_new_pos() if snake doesn't land on food
-            flowctrl::check_snake_new_pos(gamefield, gbvars, player); // this function will also call flowctrl::generate_food() if snake lands on food
-            wrefresh(gamefield);
+            flowctrl::check_snake_new_pos(gamefield, gbvars, player);
+
+            doupdate();
         }
+        flowctrl::show_game_over(gbvars);
     }
 
     delwin(gamefield);

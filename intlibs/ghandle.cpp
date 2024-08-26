@@ -63,7 +63,7 @@ namespace hdl{
     void handle_gamefield_keyboard(WINDOW* gamefield, global_elems& gbvars, assets::snake& player){
         wint_t input = 0;
 
-        switch (get_wch(&input))
+        switch (wget_wch(gamefield, &input))
         {
         case OK:
             switch (input)
