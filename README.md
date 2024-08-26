@@ -29,8 +29,8 @@ for debug builds (they write on __build-db__ folder) or ```rel``` for release bu
 modify the CMakePresets.json file to add new configurations.
 
 **NOTE**: If you are using the VS configuration with the MSVC compiler (which I'm pretty sure most of the ones that choose this
-config do) you should install an implementation of the ncurses library, if you use GCC or Clang, it is likely that you have
-ncurses installed for your compiler.
+config do) you should install an implementation of the ncurses library, if you have GCC or Clang installed from MSYS2, it is
+likely that you have ncurses installed for your compiler.
 
 ---
 
