@@ -8,14 +8,10 @@
 #include <memory>
 #include <cstdint>
 #include <ncursesw/curses.h>
-#include "gobjs.hpp"
+#include "gobjs.hpp" // not a fan if this, but I did it to use
+//assets::snake::direction as the type for global_elems::dir_map
 
 using win_uptr = std::unique_ptr<WINDOW, decltype(&delwin)>;
-
-// forward declaration for the snake struct, why?
-// cuz that would allow me to use assets::snake::direction as type for dir_map
-// that way, I stop myself from writing static_cast<uint8_t>() like a monkey
-// everytime I want to add something to it.
 
 namespace gbconst{
     constexpr uint8_t gamefield_width = 80;
