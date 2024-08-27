@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.30)
 
-project(NcursesSnake VERSION 0.2.0.0 LANGUAGES CXX)
+project(NcursesSnake VERSION 0.3.0.0 LANGUAGES CXX)
 
 add_library(target_comp_flags INTERFACE)
 target_compile_features(target_comp_flags INTERFACE cxx_std_20)
