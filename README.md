@@ -23,10 +23,10 @@ differentiate it a bit more from the inspiration.
 You can use CMake to build this code like any other CMake project, just create a folder for the CMake output and from there
 run ```cmake ..``` to generate a project to build (you can also specify your generator and other options if you like).
 
-If you use the CMake Tools extension from VSCode, you can run any of the 4 configurations, they're just to generate a VS 17 2022
-project (```vs-*``` config) and a project with MSYS makefiles (```mingw-*``` config), the ```*``` can be ```dbg```
-for debug builds (they write on __build-db__ folder) or ```rel``` for release builds (they write on __build__ folder). You can
-modify the CMakePresets.json file to add new configurations.
+If you use the CMake Tools extension from VSCode, you can run any of the 4 configurations set inside the CMakePresets.json file,
+they're just to generate a VS 17 2022 project (```vs-*``` config) and a project with MSYS makefiles (```mingw-*``` config),
+the ```*``` can be ```dbg``` for debug builds (they write on __build-db__ folder) or ```rel``` for release builds (they
+write on __build__ folder). You can modify the CMakePresets.json file to add new configurations.
 
 **NOTE**: If you are using the VS configuration with the MSVC compiler (which I'm pretty sure most of the ones that choose this
 config do) you should install an implementation of the ncurses library, if you have GCC or Clang installed from MSYS2, it is
@@ -40,7 +40,9 @@ likely that you have ncurses installed for your compiler.
 
 Use the arrow keys or WASD to move the snake.
 
-Press Ctrl+C if you are done and want to leave (BUGGY FOR THE MOMENT).
+~~Press Ctrl+C if you are done and want to leave (BUGGY FOR THE MOMENT).~~
+I'm removing this way of leaving the game for the moment. If you wanna stop playing... Just die LOL, and press space when you
+see the Game Over screen.
 
 ---
 
@@ -55,7 +57,7 @@ Press Ctrl+C if you are done and want to leave (BUGGY FOR THE MOMENT).
 I did this project using Windows lol. And thought that using the char apis might cause the text to break on other computers
 that don't have the UTF-8 codepage activated (and I didn't want my code to only work for one random non universal codepage).
 
-So yeah, I worked with wchars to make my text UTF-16 compatible on Windows (maybe the ncurses implementations for MinGW have
+So yeah, I worked with wchars to make my text UTF-16 compatible on Windows (maybe the ncurses implementation for MinGW have
 some kind of translation layer for text or does nothing and just passes the characters to the console or something, I don't
 know).
 

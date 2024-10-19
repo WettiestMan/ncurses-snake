@@ -61,6 +61,10 @@ namespace assets{
         inline constexpr wchar_t vchar_icon[] = L"│";
         inline constexpr wchar_t hchar_icon[] = L"─";
         inline constexpr wchar_t space_icon[] = L" ";
+
+        inline cchar_t vchar = {0};
+        inline cchar_t hchar = {0};
+        inline cchar_t space = {0};
     }
 }
 

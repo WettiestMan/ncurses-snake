@@ -5,18 +5,8 @@
 #include <ncursesw/curses.h>
 
 #include <clocale>
-#include <cwchar>
-#include <cassert>
-#include <cstdint>
-#include <csignal>
-#include <thread>
-#include <chrono>
 
-#include "intlibs/gdef.hpp"
-#include "intlibs/gutils.hpp"
-#include "intlibs/gobjs.hpp"
-#include "intlibs/ghandle.hpp"
-#include "intlibs/gflow.hpp"
+#include "intlibs/ginit.hpp"
 
 /**
  * TODO: Son demasiadas variables globales en mi opinión ¿están de acuerdo?
@@ -34,7 +24,7 @@
  */
 
 // Ver intlibs/gdef.hpp para más detalles
-struct global_elems gbvars = {
+/*struct global_elems gbvars = {
     true,                 // bool keep_running
     false,                // bool game_over
     L"puntos: 000000",    // wchar_t points_tmpl[gbconst::points_len]
@@ -43,7 +33,7 @@ struct global_elems gbvars = {
     {0},                  // cchar_t hchar
     {0},                  // cchar_t space
     {assets::snake::direction::no_dir}                   // uint8_t dir_map[gbconst::gamefield_height][gbconst::gamefield_width]
-};
+};*/
 
 /*
 ┌────────────────────────────────────────────┐
@@ -53,7 +43,7 @@ struct global_elems gbvars = {
 └────────────────────────────────────────────┘
 */
 
-WINDOW* initialize_stuff()
+/*WINDOW* initialize_stuff()
 {
     std::setlocale(LC_ALL, "");
     initscr();
@@ -99,48 +89,25 @@ WINDOW* initialize_stuff()
     keypad(gamefield, true);
     nodelay(gamefield, true);
     return gamefield;
-}
+}*/
 
 int main(int argc, char** argv){
+    std::setlocale(LC_ALL, "");
+    initscr();
 
-    using namespace std::chrono_literals;
+    // Actual game, done this so I can homogenize the use of win_uptr (because at this moment
+    // gamefield had to be a raw WINDOW* since I needed it to be released before endwin())
+    // 
+    // I could've used inner scopes to make it deallocate sooner, but it felt like a hack just
+    // to make it work instead of managing the window directly which seemed to be easier to
+    // understand at a glance.
+    //
+    // Oh, yeah. Passing pointers around means shared ownership, I could pass as a const win_uptr&
+    // but while I don't mind, I think I'll get canceled for that (I mean, you want unique pointers
+    // to be the only owners of a piece of memory, passing them by reference might seem like I'm
+    // defeating the purpose of them).
+    int exit_status = run(argc, argv);
 
-    assets::snake player;
-
-    WINDOW* gamefield = initialize_stuff();
-    if(!gamefield)
-    {
-        endwin();
-        std::fwprintf(stderr, L"No se pudo cargar el juego, vuelva a intentarlo más tarde...\n"
-                        L"Presione \"enter\" para cerrar el juego.");
-        std::getwchar();
-        return 1;
-        
-    }
-    refresh();
-
-    curs_set(0);
-
-    box_set(gamefield, &gbvars.vchar, &gbvars.hchar);
-    wrefresh(gamefield);
-
-    while(gbvars.keep_running){
-        flowctrl::reset_game(gamefield, gbvars, player);
-        flowctrl::generate_first_food(gamefield, gbvars);
-        refresh();
-
-        while(!gbvars.game_over){
-            std::this_thread::sleep_for(56ms);
-            hdl::handle_gamefield_keyboard(gamefield, gbvars, player);
-            flowctrl::update_snake_head(gamefield, gbvars, player);
-            flowctrl::check_snake_new_pos(gamefield, gbvars, player);
-
-            doupdate();
-        }
-        flowctrl::show_game_over(gbvars);
-    }
-
-    delwin(gamefield);
     endwin();
-    return 0;
+    return exit_status;
 }

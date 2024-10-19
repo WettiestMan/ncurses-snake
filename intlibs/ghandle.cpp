@@ -63,6 +63,16 @@ namespace hdl{
     void handle_gamefield_keyboard(WINDOW* gamefield, global_elems& gbvars, assets::snake& player){
         wint_t input = 0;
 
+        constexpr assets::snake::direction opposites[] = 
+                                   {assets::snake::direction::no_dir
+                                   , assets::snake::direction::right
+                                   , assets::snake::direction::left
+                                   , assets::snake::direction::down
+                                   , assets::snake::direction::up};
+
+        // we get the previous direction before changing it, we'll use it later
+        const auto prev_dir = player.current_dir;
+
         switch (wget_wch(gamefield, &input))
         {
         case OK:
@@ -113,5 +123,15 @@ namespace hdl{
             break;
         }
 
+        // After changing it, we check if ðe opposite of ðe registered direction is
+        // equal to the previous direction, ðis is done to stop the player to suicide
+        // ðemselves if ðey accidentally try to turn back by pressing ðe opposite direction.
+        // In case ðis happens, we restore ðe previous direction.
+        //
+        // Ðe exception, ðough, would be if ðe snake has 0 points, since at ðis point,
+        // ðe snake has no body to bite in its back.
+        if ((gbvars.points != 0) && (opposites[static_cast<uint8_t>(player.current_dir)] == prev_dir)) {
+            player.current_dir = prev_dir;
+        }
     }
 }

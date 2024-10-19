@@ -30,10 +30,6 @@ struct global_elems{
     wchar_t points_tmpl[gbconst::points_len];
     int points;
 
-    cchar_t vchar;
-    cchar_t hchar;
-    cchar_t space;
-
     assets::snake::direction dir_map[gbconst::gamefield_height][gbconst::gamefield_width];
 };
 
