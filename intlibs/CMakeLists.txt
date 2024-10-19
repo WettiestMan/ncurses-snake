@@ -1,4 +1,4 @@
-add_library(intlibs gutils.cpp gobjs.cpp ghandle.cpp gflow.cpp)
+add_library(intlibs gutils.cpp gobjs.cpp ghandle.cpp gflow.cpp ginit.cpp)
 
 target_include_directories(intlibs INTERFACE
                           ${CMAKE_CURRENT_SOURCE_DIR})
