@@ -41,11 +41,11 @@ namespace utils
     int generate_random_y() noexcept;
 
     /**
-     * Generates a std::pair of random integers from the mersene twister
+     * Generates an std::pair of random integers from the mersene twister
      * generator, the first is a number from the x distribution and the second is
      * a number from the y distribution
      * 
-     * @return a std::pair of random integers
+     * @return an std::pair of random integers
      */
     std::pair<int, int> generate_two_ints() noexcept;
 } // namespace utils
